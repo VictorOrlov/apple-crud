@@ -1,4 +1,3 @@
-import React from 'react';
 
 const PresentDay = () => {
   const monts = ["янв", "фев", "мар", "апр", "май", 

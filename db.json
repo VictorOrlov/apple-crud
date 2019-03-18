@@ -1,16 +1,12 @@
 {
   "apple": [
     {
-      "id": "pXaTMIlW8ge4p5mp",
-      "name": "ранетки",
-      "description": "вкусный тыблыко",
-      "date": "14-мар-2019 19:37:17"
-    },
-    {
-      "id": "ZRZPk2Z2MWUgR7dU",
+      "id": "G8wsGunrpDQCzjpE",
       "name": "Антоновка",
-      "description": "сладкий и сочный",
-      "date": "14-мар-2019 19:37:50"
+      "season": "Лето",
+      "color": "Зелёный",
+      "description": "Кислый, но очень вкусный.",
+      "date": "17-мар-2019 23:15:56"
     }
   ]
 }

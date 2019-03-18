@@ -1,12 +1,10 @@
 import React from 'react';
 import s from './HomePage.module.css';
-import { Container, Row, Col, Button  } from 'react-bootstrap';
+import { Row, Col, Button  } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import ShortDesc from '../../atoms/text-for-homePage';
 
 const HomePage = () => {
-  const onClick = () =>{
-  }
   return(
     <div className={s.wrapper}>
       <Row className="justify-content-center">
@@ -17,7 +15,6 @@ const HomePage = () => {
               Перейти к списку сортов
             </Button>
           </Link>
-          
         </Col>
       </Row>
     </div>
