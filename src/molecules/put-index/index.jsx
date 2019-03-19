@@ -4,7 +4,7 @@ import { Form } from 'react-bootstrap';
 import generateID from '../../atoms/randomID';
 import PresentDay from '../../atoms/presentDay';
 
-export default class PostIndex extends Component {
+export default class PutIndex extends Component {
   state = {
     season: "Зима",
     isSubmit: false,
@@ -39,17 +39,20 @@ export default class PostIndex extends Component {
     event.preventDefault();
     document.location.href = "/list-of-variates"; //<<<-Костыль
     const { name, season, color, description } = this.state;
+    const dressCode = (item, def) => {
+      if(item===undefined){return def}return item
+    };
     const user = {
       "id": generateID(16),
-      "name": name,
+      "name": dressCode(name, this.props.defName),
       "season": season,
       "color": color,
-      "description": description,
+      "description": dressCode(description, this.props.defDesc),
       "date": PresentDay(),
     };
   
     axios
-      .post(`http://localhost:3001/apple`, user)
+      .put(`http://localhost:3001/apple/${this.props.id}`, user)
       .then(response => {
         this.setState({
           addData: response.data,
@@ -66,7 +69,7 @@ export default class PostIndex extends Component {
     return(
       <div>
         {!isSubmit && (
-        <Form id="add" onSubmit={this.handleSubmit}>
+        <Form id="put" onSubmit={this.handleSubmit}>
           <Form.Group>
             <Form.Label>Название сорта:</Form.Label>
             <Form.Control name="name" onChange={this.handleChangeName} defaultValue={this.props.defName} />
@@ -94,7 +97,7 @@ export default class PostIndex extends Component {
           </Form.Group>
         </Form>)}
         {isSubmit && (
-        <p>...Обновляю список</p>)}
+        <p>...Идёт редактирование</p>)}
       </div>
     );
   }

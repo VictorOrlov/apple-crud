@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import { Modal, Button } from 'react-bootstrap';
-import PostIndex from '../post-index';
+import { Modal } from 'react-bootstrap';
 
-export default class ModalAdd extends Component {
+export default class TemplateModal extends Component {
   render(){
     return(
       <Modal
@@ -11,17 +10,16 @@ export default class ModalAdd extends Component {
         aria-labelledby="contained-modal-title-vcenter"
         centered
       >
-        <Modal.Header closeButton>
+        <Modal.Header>
           <Modal.Title id="contained-modal-title-vcenter">
-            Добавление сорта
+            {this.props.title}
           </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <PostIndex />
+          {this.props.body}
         </Modal.Body>
         <Modal.Footer>
-          <Button type="submit" form="add">Добавить</Button>
-          <Button onClick={this.props.onHide}>Закрыть</Button>
+          {this.props.children}
         </Modal.Footer>
       </Modal>
     );

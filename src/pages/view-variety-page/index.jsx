@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Helmet from 'react-helmet';
 import axios from 'axios';
 import { Card } from 'react-bootstrap';
 
@@ -53,6 +54,7 @@ export default class ViewVarietyPage extends Component{
         )}
         {data && (
           <Card>
+            <Helmet title={`Сорт: ${data.name}`} />
             <Card.Header>
             <strong>Название сорта: {data.name}</strong>  
             </Card.Header>

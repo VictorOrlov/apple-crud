@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import s from './ListOfVariatesPage.module.css';
+import Helmet from 'react-helmet';
 import axios from 'axios';
 import { Row, Col } from 'react-bootstrap';
-// import HeaderVarieties from '../../organisms/header-varieties';
-import Card from '../../molecules/card';
 import CardHeader from '../../organisms/card-header';
 import GroupButton from '../../organisms/group-button';
 import DeleteVarietyButton from '../../molecules/delete-variety-button';
+import CardBody from '../../organisms/card-body';
 
 export default class ListOfVarietiesPage extends Component{
   state = {
@@ -52,11 +52,7 @@ export default class ListOfVarietiesPage extends Component{
     ));
     let filterData = data.filter(item => item.name === isvalue);
     let renderCard = filterData.map(item => (
-      <Card
-        key={item.id}
-        col1={<span><strong>Название сорта: </strong>{item.name}</span>}
-        col2={item.date}
-        col3={item.description} /> 
+      <CardBody key={item.id} item={item} />//THIS JOB
     ));
     let select = 
     <select value={isvalue} onChange={this.handleChange.bind(this)}>
@@ -65,6 +61,7 @@ export default class ListOfVarietiesPage extends Component{
     </select>;
     return(
       <div className={s.wrapper}>
+        <Helmet title="Список сортов"/>
         <h2>Сорта яблок</h2>
         <Row className="justify-content-center">
           <Col sm={12} md={5} className="align-center">

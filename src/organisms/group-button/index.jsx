@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Button, ButtonToolbar } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import ModalAdd from '../../molecules/modal-add';
+import ModalAdd from '../../organisms/modal-add';
 
 
 
