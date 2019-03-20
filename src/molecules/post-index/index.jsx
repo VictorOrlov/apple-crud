@@ -26,30 +26,41 @@ export default class PostIndex extends Component {
       description: event.target.value 
     });
   }
+
   handleChangeSeason = event => {
-    if(this.state.season === "Зима"){
-      this.setState({isColor: false});
-    }else return this.setState({isColor: true});
     this.setState({ 
       season: event.target.value  
     });
+  }
+
+  onClick = event =>{
+    if(event.target.value !== "Зима"){
+      this.setState({isColor: false});
+    }else return this.setState({isColor: true});
   }
   
   handleSubmit = event => {
     event.preventDefault();
     document.location.href = "/list-of-variates"; //<<<-Костыль
     const { name, season, color, description } = this.state;
+    const dressCode = (item, def) => {
+      if(item===undefined){return def}return item
+    };
     const user = {
       "id": generateID(16),
-      "name": name,
+      "name": dressCode(name, null),
       "season": season,
       "color": color,
-      "description": description,
+      "description": dressCode(description, null),
       "date": PresentDay(),
     };
   
     axios
-      .post(`http://localhost:3001/apple`, user)
+      .post(`http://localhost:3001/apple`, user, {
+        headers: {
+          'Content-Type': 'application/json',
+        }
+      })
       .then(response => {
         this.setState({
           addData: response.data,
@@ -69,21 +80,27 @@ export default class PostIndex extends Component {
         <Form id="add" onSubmit={this.handleSubmit}>
           <Form.Group>
             <Form.Label>Название сорта:</Form.Label>
-            <Form.Control name="name" onChange={this.handleChangeName} defaultValue={this.props.defName} />
+            <Form.Control 
+              name="name" 
+              onChange={this.handleChangeName} 
+              defaultValue={this.props.defName} />
           </Form.Group>
           <Form.Group controlId="exampleForm.ControlSelect1">
             <Form.Label>Сезон</Form.Label>
-            <Form.Control as="select" onChange={this.handleChangeSeason.bind(this)}>
+            <Form.Control 
+              as="select" 
+              onClick={this.onClick} 
+              onChange={this.handleChangeSeason.bind(this)}>
               <option value="Зима">Зима</option>
               <option value="Весна">Весна</option>
               <option value="Лето">Лето</option>
               <option value="Осень">Осень</option>
             </Form.Control>
           </Form.Group>
-          {!isColor ? (<Form.Group>
+          {!isColor && (<Form.Group>
             <Form.Label>Цвет:</Form.Label>
             <Form.Control name="name" onChange={this.handleChangeColor} />
-          </Form.Group>) : null}
+          </Form.Group>)}
           <Form.Group>
             <Form.Label>Краткое описание:</Form.Label>
             <Form.Control 

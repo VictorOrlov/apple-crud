@@ -11,28 +11,35 @@ export default class PutIndex extends Component {
     isColor: true,
   }
 
+  
   handleChangeName = event => {
     this.setState({ 
       name: event.target.value 
     });
   }
+  
   handleChangeColor = event => {
     this.setState({ 
       color: event.target.value 
     });
   }
+  
   handleChangeDesc = event => {
     this.setState({ 
       description: event.target.value 
     });
   }
+  
   handleChangeSeason = event => {
-    if(this.state.season === "Зима"){
-      this.setState({isColor: false});
-    }else return this.setState({isColor: true});
     this.setState({ 
       season: event.target.value  
     });
+  }
+
+  onClick = event =>{
+    if(event.target.value !== "Зима"){
+      this.setState({isColor: false});
+    }else return this.setState({isColor: true});
   }
   
   handleSubmit = event => {
@@ -52,7 +59,11 @@ export default class PutIndex extends Component {
     };
   
     axios
-      .put(`http://localhost:3001/apple/${this.props.id}`, user)
+      .put(`http://localhost:3001/apple/${this.props.id}`, user, {
+        headers: {
+          'Content-Type': 'application/json',
+        }
+      })
       .then(response => {
         this.setState({
           addData: response.data,
@@ -72,11 +83,16 @@ export default class PutIndex extends Component {
         <Form id="put" onSubmit={this.handleSubmit}>
           <Form.Group>
             <Form.Label>Название сорта:</Form.Label>
-            <Form.Control name="name" onChange={this.handleChangeName} defaultValue={this.props.defName} />
+            <Form.Control 
+              name="name" onChange={this.handleChangeName} 
+              defaultValue={this.props.defName} />
           </Form.Group>
           <Form.Group controlId="exampleForm.ControlSelect1">
             <Form.Label>Сезон</Form.Label>
-            <Form.Control as="select" onChange={this.handleChangeSeason.bind(this)}>
+            <Form.Control 
+              as="select" 
+              onClick={this.onClick} 
+              onChange={this.handleChangeSeason.bind(this)}>
               <option value="Зима">Зима</option>
               <option value="Весна">Весна</option>
               <option value="Лето">Лето</option>

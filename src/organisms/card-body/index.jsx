@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import s from './CardBody.module.css';
 import { Button, ButtonToolbar } from 'react-bootstrap';
 import Card from '../../molecules/card';
 import ModalPut from '../modal-put';
@@ -13,6 +14,7 @@ export default class CardBody extends Component{
     let modalClose = () => this.setState({ modalShow: false });
     return(
       <Card
+        style={`${s.header_table} justify-content-center`}
         col1={<span><strong>Название сорта: </strong>{item.name}</span>}
         col2={item.date}
         col3={item.description}

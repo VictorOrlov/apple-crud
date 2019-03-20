@@ -5,9 +5,17 @@
   text-align: center;
   border-radius: 5px;
 }
-.header_table>div {
+.header_table>div:nth-child(2) {
   border-right: 1px solid white;
+  border-left: 1px solid white;
 }
 .header_table>div:last-child {
-  border: none;
+  border-right: none !;
+}
+
+@media(max-width: 578px){
+  .header_table>div:nth-child(2),
+  .header_table>div:nth-child(3){
+    display: none;
+  }
 }

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import s from './ViewVarietyPage.module.css'
 import Helmet from 'react-helmet';
 import axios from 'axios';
 import { Card } from 'react-bootstrap';
@@ -43,8 +44,8 @@ export default class ViewVarietyPage extends Component{
   render(){
     const { loading, error, data } = this.state;
     return(
-      <div>
-        {loading && 'Зарузка...'}
+      <div className={s.wrapper}>
+        {loading && (<h3>Зарузка...</h3>)}
         {!loading && !error && !data && 'Пусто'}
         {error && (
         <div>
@@ -53,9 +54,9 @@ export default class ViewVarietyPage extends Component{
         </div>
         )}
         {data && (
-          <Card>
+          <Card >
             <Helmet title={`Сорт: ${data.name}`} />
-            <Card.Header>
+            <Card.Header bg="success" text="white">
             <strong>Название сорта: {data.name}</strong>  
             </Card.Header>
             <Card.Body>

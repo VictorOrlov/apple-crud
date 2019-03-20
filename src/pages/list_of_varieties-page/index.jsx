@@ -77,7 +77,8 @@ export default class ListOfVarietiesPage extends Component{
               select={select} />
           </Col>
           <Col sm={12} md={10}>
-          {(isvalue==='notarget') ? <Col xs={12}><h5>Нет записей</h5></Col> :
+          {(isvalue==='notarget') ? 
+          <Col xs={12} className={s.no_desc}><h5>Нет записей</h5></Col> :
            renderCard}
           </Col>
         </Row>

@@ -1,0 +1,32 @@
+.header_table{
+  background-color: rgba(255, 255, 255, 0.918);
+  text-align: center;
+  border-radius: 5px;
+}
+.header_table>div {
+  padding: 20px 15px;
+}
+.header_table>div:nth-child(2){
+  border-right: 1px solid black;
+  border-left: 1px solid black;
+}
+.header_table>div:last-child {
+  padding: 15px;
+  border-top: 1px solid black;
+}
+
+@media(max-width: 578px){
+  .header_table{
+    font-size: 1.2rem;
+  }
+
+  .header_table>div:nth-child(2){
+    border: 0;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+
+  }
+  .header_table>div:last-child {
+    border: 0;
+  }
+}

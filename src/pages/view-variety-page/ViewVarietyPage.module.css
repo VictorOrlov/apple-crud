@@ -1,0 +1,9 @@
+.wrapper{
+  min-height: 100%;
+  padding: 20px;
+  padding-top: 10%;
+  background-image: url(../../images/apples_bg_home.png);
+  background-attachment: fixed;
+  -webkit-background-size: auto;
+  background-size: cover;
+}
